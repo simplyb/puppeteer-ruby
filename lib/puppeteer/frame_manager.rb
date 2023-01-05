@@ -83,11 +83,11 @@ class Puppeteer::FrameManager
     results = await_all(*promises)
     frame_tree = results[1]['frameTree']
     handle_frame_tree(client, frame_tree)
-		downloads_folder = ENV.fetch 'PUPPETEER_DOWNLOADS_FOLDER', './downloads'
+		downloads_folder = ENV.fetch 'PUPPETEER_DOWNLOADS_FOLDER', './download'
     await_all(
       client.async_send_message('Page.setLifecycleEventsEnabled', enabled: true),
       client.async_send_message(
-				'Browser.setDownloadBehavior',
+				'Page.setDownloadBehavior',
 				behavior: 'allow',
 				downloadPath: downloads_folder
 			),
